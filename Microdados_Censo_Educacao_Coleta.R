@@ -8,8 +8,8 @@
 # ------------------- #
 # --- Bibliotecas --- #
 # ------------------- #
-source('Microdados_Censo_Educacao_URL.R')
-source('Microdados_Censo_Educacao_Acesso.R')
+source('https://raw.githubusercontent.com/paulo-icaro/Censo_Educacao/refs/heads/main/Microdados_Censo_Educacao_URL.R')
+source('https://raw.githubusercontent.com/paulo-icaro/Censo_Educacao/refs/heads/main/Microdados_Censo_Educacao_Acesso.R')
 
 
 
