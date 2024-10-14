@@ -26,7 +26,7 @@ microdados_educacao_api = function(url, message = TRUE){
   
   if(class(api_connection) == 'try-error'){
     while(class(api_connection) == 'try-error' & tries <= 5){
-      if(message = TRUE){
+      if(message == TRUE){
         message('Problemas na conexao. Tentando acessar a API novamente ...\n')
         Sys.sleep(0.7)
       }
@@ -35,7 +35,7 @@ microdados_educacao_api = function(url, message = TRUE){
       if(tries > 5){dlg_message(message = 'Conexao mal sucedida ! \nTente conectar com a API mais tarde.', type = 'ok')}
     }
   } else {
-    if(message = TRUE){
+    if(message == TRUE){
       message(message = 'Conexao bem sucedida ! \nDados sendo coletados ...\n')
       Sys.sleep(0.7)
     }
