@@ -16,9 +16,9 @@ library(svDialogs)                          # Exibir caixas de mensagens
 # ----------------------------------------- #
 # --- Funcao de Coleta de Ddados da API --- #
 # ----------------------------------------- #
-microdados_educacao_api = function(url){
+microdados_educacao_api = function(url, message = TRUE){
   message('Iniciando a conexao com a API')
-  Sys.sleep(1.05)
+  Sys.sleep(1)
   
   # --- Conexao com a API --- #
   api_connection = try(expr = request(base_url = url) %>% req_perform(), silent = TRUE)
@@ -26,15 +26,19 @@ microdados_educacao_api = function(url){
   
   if(class(api_connection) == 'try-error'){
     while(class(api_connection) == 'try-error' & tries <= 5){
-      message('Problemas na conexao. Tentando acessar a API novamente ...\n')
-      Sys.sleep(1.05)
+      if(message = TRUE){
+        message('Problemas na conexao. Tentando acessar a API novamente ...\n')
+        Sys.sleep(0.7)
+      }
       api_connection = try(expr = request(base_url = url) %>% req_perform(), silent = TRUE)
       tries = tries + 1
       if(tries > 5){dlg_message(message = 'Conexao mal sucedida ! \nTente conectar com a API mais tarde.', type = 'ok')}
     }
   } else {
-    message(message = 'Conexao bem sucedida ! \nDados sendo coletados ...\n')
-    Sys.sleep(1.05)
+    if(message = TRUE){
+      message(message = 'Conexao bem sucedida ! \nDados sendo coletados ...\n')
+      Sys.sleep(0.7)
+    }
   }
   
   api_connection = rawToChar(api_connection$body)                 # Raw to Json
