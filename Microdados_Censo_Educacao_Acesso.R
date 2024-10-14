@@ -17,8 +17,10 @@ library(svDialogs)                          # Exibir caixas de mensagens
 # --- Funcao de Coleta de Ddados da API --- #
 # ----------------------------------------- #
 microdados_educacao_api = function(url, message = TRUE){
-  message('Iniciando a conexao com a API')
-  Sys.sleep(1)
+  if(message == TRUE){
+    message('Iniciando a conexao com a API')
+    Sys.sleep(1)
+  }
   
   # --- Conexao com a API --- #
   api_connection = try(expr = request(base_url = url) %>% req_perform(), silent = TRUE)
