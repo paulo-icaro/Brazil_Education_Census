@@ -29,8 +29,8 @@ micr_educacao_basica = read.delim(file = 'Microdados/Microdados - Censo Escolar 
 micr_cursos_tecnicos = read.delim(file = 'Microdados/Microdados - Censo Escolar (2023)/dados/suplemento_cursos_tecnicos_2023.csv', sep = ';', fileEncoding = 'LATIN1')
 
 # Educacao Superior
-micr_ensino_superior = read.delim(file = 'Microdados/Microdados - Censo Ensino Superior (2022)/dados/MICRODADOS_ED_SUP_IES_2022.CSV', sep = ';', fileEncoding = 'LATIN1')
-micr_cursos_ies = read.delim(file = 'Microdados/Microdados - Censo Ensino Superior (2022)/dados/MICRODADOS_CADASTRO_CURSOS_2022.CSV', sep = ';', fileEncoding = 'LATIN1')
+micr_ensino_superior_ies = read.delim(file = 'Microdados/Microdados - Censo Ensino Superior (2022)/dados/MICRODADOS_ED_SUP_IES_2022.CSV', sep = ';', fileEncoding = 'LATIN1')
+micr_ensino_superior_cursos = read.delim(file = 'Microdados/Microdados - Censo Ensino Superior (2022)/dados/MICRODADOS_CADASTRO_CURSOS_2022.CSV', sep = ';', fileEncoding = 'LATIN1')
 
 
 
@@ -88,7 +88,7 @@ function(regiao, estado, municipio, periodo = '2023'){
 
 # --- 3.2.3 Tag - Censo da Educacao Superior - Ensino Superior
 #* @tag "Censo da Educacao Superior"
-#* @get /ensino_superior
+#* @get /ies
 #* @serializer unboxedJSON list(na = "null")
 #* @param regiao Informe a regiao (Ex: Norte)
 #* @param estado Informe a sigla UF (Ex: AM)
@@ -97,7 +97,7 @@ function(regiao, estado, municipio, periodo = '2023'){
 
 # --- 3.2.3 Funcao - Microdados da Educacao Superior - Ensino Superior --- #
 function(regiao, estado, municipio, periodo = '2022'){
-  micr_ensino_superior %>% filter(NO_REGIAO_IES == regiao, SG_UF_IES == estado, CO_MUNICIPIO_IES == municipio, NU_ANO_CENSO == periodo)
+  micr_ensino_superior_ies %>% filter(NO_REGIAO_IES == regiao, SG_UF_IES == estado, CO_MUNICIPIO_IES == municipio, NU_ANO_CENSO == periodo)
 }
 
 
@@ -112,7 +112,7 @@ function(regiao, estado, municipio, periodo = '2022'){
 
 # --- 3.2.4 Funcao - Censo da Educacao Superior - Instituicoes --- #
 function(regiao, estado, municipio, periodo = '2022'){
-  micr_cursos_ies %>% filter(NO_REGIAO == regiao, SG_UF == estado, CO_MUNICIPIO == municipio, NU_ANO_CENSO == periodo)
+  micr_ensino_superior_cursos %>% filter(NO_REGIAO == regiao, SG_UF == estado, CO_MUNICIPIO == municipio, NU_ANO_CENSO == periodo)
 }
 
 
